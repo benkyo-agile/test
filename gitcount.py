@@ -18,9 +18,10 @@ branch_name = "master"
 
 
 #コミット毎のファイル変更量を出力
-with open("csv/" + branch_name + "_file_modify_line.csv", "w") as file:
+with open("csv/" + branch_name + "_file_modify_line4.csv", "w") as file:
     print('hexsha,author,author_mail,committer,committer_mail,authored_date,file_name,insertions,deletions,lines,messege_summary',file=file)
-    for item in repo.iter_commits(branch_name,'src/', max_count=1000, max_parents=0): #直近の件数を指定
+    for item in repo.iter_commits(branch_name,'', max_count=1000): #直近の件数を指定
+    # for item in repo.iter_commits(branch_name, max_count=1000, max_parents=1): #直近の件数を指定
         file_list = item.stats.files
         for file_name in file_list:
             dt = datetime.datetime.fromtimestamp(item.authored_date).strftime("%Y-%m-%d") #日付の形式を指定
